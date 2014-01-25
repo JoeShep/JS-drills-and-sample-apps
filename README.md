@@ -8,6 +8,8 @@ These mini-apps were built using Grunt, the JavaScript task runner, which requir
 To run (unless otherwise instructed):
 <ul>
   <li>Install Grunt cli globally: `sudo npm install -g grunt-cli` </li>
+  <li>run `npm instal` to create node_modules folder</li>
   <li>run `grunt` to create a local public/ directory</li>
-  <li>open public/index.html and take a look!
+  <li>run `PORT=3000 node app.js`
+  <li>open `localhost:3000` and take a look!
 </ul>
