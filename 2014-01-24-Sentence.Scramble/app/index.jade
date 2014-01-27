@@ -1,0 +1,35 @@
+doctype html
+//[if IE 9]><html class="lt-ie10" lang="en" > <![endif]
+html(class='no-js', lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=2.0')
+    title Foundation 5
+    link(rel='stylesheet', href='/css/normalize.css')
+    link(rel='stylesheet', href='/css/foundation.css')
+    link(href='http://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css')
+
+    link(rel='stylesheet', href='/css/app.css')
+    script(src='/js/vendor/modernizr.js')
+  body
+    .small-6.small-centered.columns
+      h1 Sentence Scrambler
+    br
+    form
+      .row
+        .small-8.small-centered.columns
+          label Type a Sentence to Scramble
+            input(id='sentence', type='text', placeholder='')
+            a(href="#", class="button") Chop it up!
+    .row
+      .large-10.small-centered.columns
+        #word-list
+    .row
+      .large-10.small-centered.columns
+        #sentence-box
+
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/vendor/foundation.js')
+    script(src='/js/source/main.js')
+    script $(document).foundation();
+
