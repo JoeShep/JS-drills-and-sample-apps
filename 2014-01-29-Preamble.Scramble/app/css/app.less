@@ -1,0 +1,38 @@
+@bg-color: #ADAA81;
+@lavender: #988FD5;
+@orange: #ED8D51;
+
+body{
+  background-color: @bg-color;
+}
+
+textarea {
+  height: auto;
+}
+
+#evens, #odds {
+  border: 2px dashed black;
+}
+
+ul {
+  list-style-type: none;
+  li {
+    margin: 8px 0;
+    span {
+      border: 1px dashed black;
+    }
+  }
+}
+
+
+#evens li span{
+  padding: 5px;
+  font-size: 110%;
+  background-color: @lavender;
+}
+
+#odds li span{
+  padding: 5px;
+  font-size: 110%;
+  background-color: @orange;
+}
