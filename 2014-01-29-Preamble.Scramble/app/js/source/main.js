@@ -25,7 +25,9 @@
     });
 
     var odds = words.filter(function(val) {
-      return 0 !== val.length  % 2;
+      if (val.length > 1){
+        return 0 !== val.length  % 2;
+      }
     });
 
     var noVowelWords = [];
@@ -35,14 +37,39 @@
 
     _.pull(noVowelWords, '');
 
-    displayWords(pigWords, noVowelWords);
+    doTheMath(evens, odds, pigWords, noVowelWords);
+   // displayWords(pigWords, noVowelWords);
   }
 
-  function displayWords(pigWords, noVowelWords){
+  function doTheMath(evens, odds, pigWords, noVowelWords){
+    var sums = [];
+    var products = [];
+    for(var i = 0; i < evens.length; i ++){
+      var sum = 0;
+      for(var j = 1; j <= evens[i].length; j++){
+        sum = sum + j;
+      }
+      sums.push(sum);
+    }
+
+    for(var x = 0; x < odds.length; x++){
+      var product = 1;
+      for(var y = 1; y <= odds[x].length; y++){
+        product = product * y;
+      }
+      products.push(product);
+    }
+    //products = _.without(products, 1);
+    displayWords(sums, products, pigWords, noVowelWords, evens, odds);
+  }
+
+  function displayWords(sums, products, pigWords, noVowelWords, evens, odds){
     var timer1 = setInterval(function() {
       if(pigWords.length) {
-        $('#evens-list').append('<li><span>' + pigWords[0].toLowerCase() + '</span></li>');
+        $('#evens-list').append('<li><span class="evenWords bothWords"><a href="https://www.google.com/#q=' + evens[0]  + '">' + pigWords[0].toLowerCase() + ' ' + '</span><span class="sums">' + sums[0] + '</a></span></li>');
         pigWords.shift();
+        sums.shift();
+        evens.shift();
       } else {
         clearInterval(timer1);
       }
@@ -50,8 +77,10 @@
 
     var timer2 = setInterval(function() {
       if(noVowelWords.length) {
-        $('#odds-list').append('<li><span>' + noVowelWords[0].toUpperCase() + '</span></li>');
+        $('#odds-list').append('<li><span class="oddWords bothWords"><a href="https://www.google.com/#q=' + odds[0] + '">' + noVowelWords[0].toUpperCase() + ' ' + '</span><span class="products">' + products[0] + '</a></span></li>');
         noVowelWords.shift();
+        products.shift();
+        odds.shift();
       } else {
         clearInterval(timer2);
       }
