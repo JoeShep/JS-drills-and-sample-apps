@@ -1,6 +1,8 @@
 (function(){
 
   'use strict';
+  var counter = 0;
+  var matches = 0;
 
   $(document).ready(initialize);
 
@@ -11,11 +13,10 @@
   }
 
   function shuffle(){
-    //debugger;
     if($('.content:has(img)').length){
       return;
     } else {
-      //var numbers = _.shuffle([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]);
+      $('#counter').animate({opacity: 1}, 500);
       var pics = [];
       pics[0] = ['media/robin.jpg', 0];
       pics[1] = ['media/barbie.jpg', 1];
@@ -49,7 +50,7 @@
 
   function flipIt(){
     var $this = $(this);
-    if($this.hasClass('matched') || $('.content').children().length === 0){
+    if($this.hasClass('matched') || $('.content').children().length === 0 || $('.flipped').length === 2){
       return;
     }
     if(!$this.hasClass('flipped') && $('.flipped').length < 2){
@@ -60,6 +61,8 @@
         onEnd: function(){
           if($('.flipped:eq(1)').length){
             checkMatch();
+            counter += 1;
+            $('#flip-count').text(' ' + counter);
           }
         }
       }).addClass('flipped');
@@ -70,26 +73,26 @@
       $this.revertFlip();
     }
   }
-  
+
   function checkMatch(){
     var $pic1 = $('.flipped:eq(0)');
     var $pic2 = $('.flipped:eq(1)');
     if( $pic1.find('img').data('id') === $pic2.find('img').data('id')){
-      $('.flipped').children().css('border','5px solid green');
-      $('.flipped').toggleClass('matched flipped');
+      $('.flipped').addClass('matched').removeClass('flipped');
+      $('.matched').children().css('border','5px solid green');
+      matches += 1;
+      $('#match-count').text(' ' + matches);
       if($('.matched').length === 20){
         setTimeout(function(){
           alert('Great job!');
         },500);
       }
     } else {
-      $('.flipped').animate({'background-color':'red'},100);
       setTimeout(function(){
-        $('.flipped').revertFlip().css('background','black').removeClass('flipped');
+        $('.flipped').revertFlip().removeClass('flipped');
       },800);
     }
   }
-//$('.tile:contains(1)').css("background-color", "red");
 
 })();
 
