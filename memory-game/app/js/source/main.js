@@ -9,12 +9,13 @@
   function initialize(){
     $(document).foundation();
     $('.flipbox-front').click(flipIt);
-    $('.play').click(shuffle);
+    $('.play').click(setup);
   }
 
-  function shuffle(){
-    if($('.content:has(img)').length){
-      return;
+  function setup(){
+    if($(this).text() === 'Reset'){
+
+      location.reload();
     } else {
       $('#counter').animate({opacity: 1}, 500);
       var pics = [];
@@ -45,8 +46,10 @@
         $(this).append('<img data-id="' + pics[0][1] + '"src=' + pics[0][0] + '>');
         pics.shift();
       });
+      $('.play').toggleClass('play reset').text('Reset');
     }
   }
+
 
   function flipIt(){
     var $this = $(this);
