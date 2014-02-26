@@ -14,7 +14,6 @@
 
   function setup(){
     if($(this).text() === 'Reset'){
-
       location.reload();
     } else {
       $('#counter').animate({opacity: 1}, 500);
