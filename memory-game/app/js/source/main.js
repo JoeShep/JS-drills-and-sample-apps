@@ -10,6 +10,32 @@
     $(document).foundation();
     $('.flipbox-front').click(flipIt);
     $('.play').click(setup);
+    $('.round').click(function(){
+     // debugger;
+    });
+  }
+
+  var channelMax = 20; // number of channels
+  var  audiochannels = [];
+  for (var a = 0; a < channelMax; a++) { // prepare the channels
+    audiochannels[a] = [];
+    audiochannels[a].channel = new Audio(); // create a new audio object
+    audiochannels[a].finished = -1; // expected end time for this channel
+  }
+
+  function playMultiSound(s) {
+    for (var a = 0; a < audiochannels.length; a++) {
+      var thistime = new Date();
+      if (audiochannels[a].finished < thistime.getTime()) {
+        audiochannels[a].finished =
+          thistime.getTime() + document.getElementById(s).duration * 1000;
+        audiochannels[a].channel.src =
+          document.getElementById(s).src;
+        audiochannels[a].channel.load();
+        audiochannels[a].channel.play();
+        break;
+      }
+    }
   }
 
   function setup(){
@@ -82,6 +108,8 @@
     if( $pic1.find('img').data('id') === $pic2.find('img').data('id')){
       $('.flipped').addClass('matched').removeClass('flipped');
       $('.matched').children().css('border','5px solid green');
+      playMultiSound($('#correct').attr('id'));
+      $('#boardContainer').animate({'background-color':'green'},300).delay(300).animate({'background-color':'#993399'},200);
       matches += 1;
       $('#match-count').text(' ' + matches);
       if($('.matched').length === 20){
@@ -90,6 +118,7 @@
         },500);
       }
     } else {
+      playMultiSound($('#wrong').attr('id'));
       setTimeout(function(){
         $('.flipped').revertFlip().removeClass('flipped');
       },800);

@@ -10,7 +10,10 @@ html(class='no-js', lang='en')
     link(rel='stylesheet', href='/css/foundation.css')
     link(rel='stylesheet', href='/css/app.css')
   body
+    audio(id='correct' src="media/stab.wav" preload='auto')
+    audio(id='wrong' src="media/wrong.mp3" preload='auto')
     .row
+      button.round test
       .small-10.small-offset-1.columns
         .small-5.columns#title
           h1 Memory Game
@@ -89,7 +92,7 @@ html(class='no-js', lang='en')
   script(src='/js/vendor/jquery.js')
   script(src='/js/vendor/jqueryUI.js')
   script(src='/js/vendor/jquery.flip.min.js')
-  script(src='/js/vendor/foundation.js') 
+  script(src='/js/vendor/foundation.min.js')
   script(src='/js/vendor/lodash.js')
   script(src='/js/source/main.js')
 
