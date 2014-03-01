@@ -10,32 +10,14 @@
     $(document).foundation();
     $('.flipbox-front').click(flipIt);
     $('.play').click(setup);
-    $('.round').click(function(){
-     // debugger;
-    });
-  }
-
-  var channelMax = 20; // number of channels
-  var  audiochannels = [];
-  for (var a = 0; a < channelMax; a++) { // prepare the channels
-    audiochannels[a] = [];
-    audiochannels[a].channel = new Audio(); // create a new audio object
-    audiochannels[a].finished = -1; // expected end time for this channel
   }
 
   function playMultiSound(s) {
-    for (var a = 0; a < audiochannels.length; a++) {
-      var thistime = new Date();
-      if (audiochannels[a].finished < thistime.getTime()) {
-        audiochannels[a].finished =
-          thistime.getTime() + document.getElementById(s).duration * 1000;
-        audiochannels[a].channel.src =
-          document.getElementById(s).src;
-        audiochannels[a].channel.load();
-        audiochannels[a].channel.play();
-        break;
-      }
-    }
+    //debugger;
+    var soundFX = new Audio();
+    soundFX.src = s.attr('src');
+    soundFX.load();
+    soundFX.play();
   }
 
   function setup(){
@@ -103,12 +85,13 @@
   }
 
   function checkMatch(){
-    var $pic1 = $('.flipped:eq(0)');
-    var $pic2 = $('.flipped:eq(1)');
-    if( $pic1.find('img').data('id') === $pic2.find('img').data('id')){
+    //debugger;
+    var $pic1 = $('.flipped:eq(0)').find('img').data('id');
+    var $pic2 = $('.flipped:eq(1)').find('img').data('id');
+    if( $pic1 === $pic2 ){
       $('.flipped').addClass('matched').removeClass('flipped');
       $('.matched').children().css('border','5px solid green');
-      playMultiSound($('#correct').attr('id'));
+      playMultiSound($('audio[id=a'+$pic1+']'));
       $('#boardContainer').animate({'background-color':'green'},300).delay(300).animate({'background-color':'#993399'},200);
       matches += 1;
       $('#match-count').text(' ' + matches);
@@ -118,7 +101,7 @@
         },500);
       }
     } else {
-      playMultiSound($('#wrong').attr('id'));
+      playMultiSound($('#wrong'));
       setTimeout(function(){
         $('.flipped').revertFlip().removeClass('flipped');
       },800);
