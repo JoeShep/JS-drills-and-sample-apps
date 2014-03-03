@@ -10,7 +10,6 @@ html(class='no-js', lang='en')
     link(rel='stylesheet', href='/css/foundation.css')
     link(rel='stylesheet', href='/css/app.css')
   body
-    audio(id='correct' src="media/stab.wav" preload='auto')
     audio(id='wrong' src="media/wrong.mp3" preload='auto')
     audio(id="a0" src="media/batman.wav" preload='auto')
     audio(id='a1' src="media/barbie.wav" preload='auto')
@@ -32,66 +31,10 @@ html(class='no-js', lang='en')
     .row#board
       .small-10.small-centered.columns#boardContainer
         ul.small-block-grid-4
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
-          li
-            .tile.flipbox-front
-              .content.hidden
+          - for(var i = 0; i < 20; i++)
+            li
+              .tile.flipbox-front
+                .content.hidden
 
   script(src='/js/vendor/jquery.js')
   script(src='/js/vendor/jqueryUI.js')

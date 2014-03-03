@@ -1,10 +1,5 @@
 @bg-color: #993399;
-
-@topbar-bg: red;
-
-.top-bar {
-  background-color: @topbar-bg;
-}
+@container: #7792A8;
 
 h1 {
   margin-top: 15px;
@@ -33,16 +28,34 @@ h1 {
   }
 }
 
+html{
+  height: 100%
+}
+
 body{
-  background-image: url(../media/texture1.png);
+  //background-image: url(../media/texture1.png);
+background: rgb(206,220,231);
+background: -moz-linear-gradient(-45deg,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%);
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1)));
+background: -webkit-linear-gradient(-45deg,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+background: -o-linear-gradient(-45deg,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+background: -ms-linear-gradient(-45deg,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+background: linear-gradient(135deg,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=1 );
+
+}
+
+#boardContainer {
+  background-color: @container;
+  border: 1px solid darken(@container, 20%)
 }
 
 .tile {
   height: 125px;
   width: 100%;
-  //padding: 5px;
   margin: 8px;
-  background-color: #bada55;
+  background-color: #5096AD;
+  border: 2px solid #2a1900;
 }
 
 #boardContainer {
@@ -65,7 +78,7 @@ li {
 }
 
 .hidden{
-  display: none;
+  opacity: 0;
 }
 
 #match {
